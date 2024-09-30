@@ -5,6 +5,8 @@ export default registerAs('app', () => {
     apiPort: Number(process.env.API_PORT),
     jwtPublicKey: process.env.SERVER_JWT_PUBLIC_KEY,
     jwtPrivateKey: process.env.SERVER_JWT_PRIVATE_KEY,
+    cryptoKey: process.env.CRYPTO_KEY,
+    cryptoIV: process.env.CRYPTO_IV,
   };
   return returnObj;
 });

@@ -8,6 +8,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { types } from 'pg';
 import { ClsModule } from 'nestjs-cls';
 import { AuthModule } from './core/auth/auth.module';
+import { UserModule } from './core/user/user.module';
+import { UserToRoleModule } from './core/user_to_role/user_to_role.module';
 
 @Module({
   imports: [
@@ -39,6 +41,8 @@ import { AuthModule } from './core/auth/auth.module';
       inject: [ConfigService],
     }),
     AuthModule,
+    UserModule,
+    UserToRoleModule,
   ],
   controllers: [],
   providers: [],

@@ -14,4 +14,16 @@ export const Exceptions: LogicExceptionType = {
     httpStatusCode: 401,
     message: 'Неверный токен',
   },
+  [LogicExceptionList.LoginExist]: {
+    httpStatusCode: 403,
+    message: 'Данный логин уже существует',
+  },
+  [LogicExceptionList.UserNotExist]: {
+    httpStatusCode: 404,
+    message: 'Пользователь не существует',
+  },
+  [LogicExceptionList.PasswordDontMatch]: {
+    httpStatusCode: 403,
+    message: 'Неверный пароль',
+  },
 };
