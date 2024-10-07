@@ -22,7 +22,18 @@ export class TrainService {
     const trains_count = await this.trainRepository.totalTrains(dto);
 
     return new PageData(
-      trains,
+      trains.map((train) => {
+        return {
+          id: train.id,
+          number: train.number,
+          model: train.model,
+          passengers: train.passengers,
+          train_type: {
+            id: train.train_type?.id,
+            name: train.train_type?.name,
+          },
+        };
+      }),
       new PageMeta({ pageOptions: dto, total: trains_count }),
     );
   }

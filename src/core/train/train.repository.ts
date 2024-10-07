@@ -19,15 +19,7 @@ export class TrainRepository {
   async findTrains(dto: GetTrainsRequestDto) {
     const query = this.repository
       .createQueryBuilder('train')
-      .select([
-        'train.id as id',
-        'train.number as number',
-        'train.model as model',
-        'train_type.name as train_type',
-        'train_type.id as train_type_id',
-        'train.passengers as passengers',
-      ])
-      .leftJoin('train.train_type', 'train_type');
+      .leftJoinAndSelect('train.train_type', 'train_type');
 
     if (dto.number) {
       query.andWhere('train.number = :number', { number: dto.number });
@@ -57,20 +49,12 @@ export class TrainRepository {
       .offset(dto.skip)
       .limit(dto.perPage);
 
-    return query.getRawMany();
+    return query.getMany();
   }
 
   async totalTrains(dto: FilterTrainTableDto) {
     const query = this.repository
       .createQueryBuilder('train')
-      .select([
-        'train.id as id',
-        'train.number as number',
-        'train.model as model',
-        'train_type.name as train_type',
-        'train_type.id as train_type_id',
-        'train.passengers as passengers',
-      ])
       .leftJoin('train.train_type', 'train_type');
 
     if (dto.number) {

@@ -58,6 +58,10 @@ export class TrainController {
     return this.service.editTrain(dto);
   }
 
+  @ApiOperation({
+    summary: 'Delete train',
+  })
+  @UseGuards(AdminGuard)
   @Delete('/:id')
   async delete(@Param('id') id: number) {
     return this.service.delete(id);

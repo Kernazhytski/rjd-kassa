@@ -10,6 +10,7 @@ import { AuthModule } from './core/auth/auth.module';
 import { UserModule } from './core/user/user.module';
 import { UserToRoleModule } from './core/user_to_role/user_to_role.module';
 import { TrainModule } from './core/train/train.module';
+import { TrainTypeModule } from './core/nsi/train-type/train-type.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { TrainModule } from './core/train/train.module';
     UserModule,
     UserToRoleModule,
     TrainModule,
+    TrainTypeModule,
   ],
   controllers: [],
   providers: [],
