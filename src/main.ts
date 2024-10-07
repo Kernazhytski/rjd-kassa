@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { JwtService } from '@nestjs/jwt';
 import { ClsService } from 'nestjs-cls';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from './pipes/validation.pipe';

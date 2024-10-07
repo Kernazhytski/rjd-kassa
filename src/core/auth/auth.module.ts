@@ -12,12 +12,6 @@ import { UserToRoleModule } from '../user_to_role/user_to_role.module';
   providers: [AuthService],
   imports: [
     JwtModule.registerAsync({
-      /*global: true,
-      signOptions: {
-        algorithm: 'RS512',
-      },
-      publicKey: process.env.SERVER_JWT_PUBLIC_KEY,
-      privateKey: process.env.SERVER_JWT_PRIVATE_KEY,*/
       imports: [ConfigModule],
       useFactory(configService: ConfigService) {
         const appConfig = configService.get<AppConfig>('app');
@@ -37,5 +31,6 @@ import { UserToRoleModule } from '../user_to_role/user_to_role.module';
     ConfigModule,
     UserToRoleModule,
   ],
+  exports: [JwtModule],
 })
 export class AuthModule {}

@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
@@ -10,6 +9,7 @@ import { ClsModule } from 'nestjs-cls';
 import { AuthModule } from './core/auth/auth.module';
 import { UserModule } from './core/user/user.module';
 import { UserToRoleModule } from './core/user_to_role/user_to_role.module';
+import { TrainModule } from './core/train/train.module';
 
 @Module({
   imports: [
@@ -43,6 +43,7 @@ import { UserToRoleModule } from './core/user_to_role/user_to_role.module';
     AuthModule,
     UserModule,
     UserToRoleModule,
+    TrainModule,
   ],
   controllers: [],
   providers: [],

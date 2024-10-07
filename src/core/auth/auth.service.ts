@@ -62,7 +62,7 @@ export class AuthService {
       );
 
       return {
-        token: await this.generateToken(user.id, ['User']),
+        token: await this.generateToken(user.id, [RoleIdsType.User]),
       };
     });
   }
@@ -84,12 +84,12 @@ export class AuthService {
     return {
       token: await this.generateToken(
         user.id,
-        user.user_to_roles.map((u2r) => u2r.role.name),
+        user.user_to_roles.map((u2r) => u2r.role.id),
       ),
     };
   }
 
-  async generateToken(userId: string, roles: string[]) {
+  async generateToken(userId: string, roles: number[]) {
     const payload = { userId, roles };
     return this.jwtService.signAsync(payload);
   }
