@@ -1,8 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  TrainTypes,
-  TrainTypesResponseDto,
-} from '../../../nsi/train-type/dto/response/train-types-response.dto';
+import { TrainTypes } from '../../../nsi/train-type/dto/response/train-types-response.dto';
 
 export class GetTrainsResponseDto {
   @ApiProperty()
