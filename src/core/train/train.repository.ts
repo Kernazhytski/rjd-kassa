@@ -19,6 +19,14 @@ export class TrainRepository {
   async findTrains(dto: GetTrainsRequestDto) {
     const query = this.repository
       .createQueryBuilder('train')
+      .select([
+        'train.id as id',
+        'train.number as number',
+        'train.model as model',
+        'train.passengers as passengers',
+        'train_type.id as type_id',
+        'train_type.name as type_name',
+      ])
       .leftJoinAndSelect('train.train_type', 'train_type');
 
     if (dto.number) {
@@ -49,7 +57,7 @@ export class TrainRepository {
       .offset(dto.skip)
       .limit(dto.perPage);
 
-    return query.getMany();
+    return query.getRawMany();
   }
 
   async totalTrains(dto: FilterTrainTableDto) {

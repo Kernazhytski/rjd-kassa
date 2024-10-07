@@ -29,8 +29,8 @@ export class TrainService {
           model: train.model,
           passengers: train.passengers,
           train_type: {
-            id: train.train_type?.id,
-            name: train.train_type?.name,
+            id: train.type_id,
+            name: train.type_name,
           },
         };
       }),
