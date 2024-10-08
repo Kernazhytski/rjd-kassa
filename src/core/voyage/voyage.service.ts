@@ -1,9 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { VoyageRepository } from './voyage.repository';
-import { CreateVoyageRequestDto } from './dto/create-voyage-request.dto';
+import { CreateVoyageRequestDto } from './dto/request/create-voyage-request.dto';
 import { DataSource } from 'typeorm';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { RouteService } from 'core/route/route.service';
+import { EditVoyageRequestDto } from './dto/request/edit-voyage-request.dto';
+import { GetVoyagesRequestDto } from './dto/request/get-vouages-request.dto';
+import { PageMeta } from '../../common/pagination/page-meta.class';
+import { PageData } from '../../common/pagination/page.class';
 
 @Injectable()
 export class VoyageService {
@@ -36,11 +40,48 @@ export class VoyageService {
         {
           train_id: dto.train_id,
           route_id: dto.route_id,
+          ticket_cost: dto.ticket_cost,
           start_date: end_travel_date,
           is_start: false,
         },
         manager,
       );
     });
+  }
+
+  async edit(dto: EditVoyageRequestDto) {
+    return this.repository.save(dto);
+  }
+
+  async delete(id: number) {
+    return this.repository.delete(id);
+  }
+
+  async getVoyages(dto: GetVoyagesRequestDto) {
+    const voyages = await this.repository.getVoyagesTable(dto);
+    const voyagesCount = await this.repository.getVoyagesCount(dto);
+
+    return new PageData(
+      voyages.map((vouyage) => {
+        return {
+          id: vouyage?.id,
+          start_date: vouyage?.start_date,
+          train: {
+            id: vouyage?.train?.id,
+            number: vouyage?.train?.number,
+            model: vouyage?.train?.model,
+            train_type: vouyage?.train?.train_type?.name,
+          },
+          from: vouyage?.route?.start,
+          to: vouyage?.route?.finish,
+          ticket_cost: vouyage?.ticket_cost,
+          tickets_left: vouyage?.train?.passengers - vouyage?.tickets?.length,
+        };
+      }),
+      new PageMeta({
+        total: voyagesCount,
+        pageOptions: dto,
+      }),
+    );
   }
 }

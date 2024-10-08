@@ -13,6 +13,7 @@ import { TrainModule } from './core/train/train.module';
 import { TrainTypeModule } from './core/nsi/train-type/train-type.module';
 import { RouteModule } from './core/route/route.module';
 import { VoyageModule } from './core/voyage/voyage.module';
+import { TicketModule } from './core/ticket/ticket.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { VoyageModule } from './core/voyage/voyage.module';
     TrainTypeModule,
     RouteModule,
     VoyageModule,
+    TicketModule,
   ],
   controllers: [],
   providers: [],

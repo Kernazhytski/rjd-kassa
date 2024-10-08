@@ -26,4 +26,8 @@ export const Exceptions: LogicExceptionType = {
     httpStatusCode: 403,
     message: 'Неверный пароль',
   },
+  [LogicExceptionList.NoPlaces]: {
+    httpStatusCode: 403,
+    message: 'Недостаточно мест',
+  },
 };

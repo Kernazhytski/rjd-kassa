@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsISO8601, IsNumber } from 'class-validator';
+import { IsDate, IsNumber } from 'class-validator';
 
 export class CreateVoyageRequestDto {
   @ApiProperty()
@@ -11,6 +11,10 @@ export class CreateVoyageRequestDto {
   train_id: number;
 
   @ApiProperty()
-  @IsISO8601()
+  @IsDate()
   start_date: Date;
+
+  @ApiProperty()
+  @IsNumber()
+  ticket_cost: number;
 }
