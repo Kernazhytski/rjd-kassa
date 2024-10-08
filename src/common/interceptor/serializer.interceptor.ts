@@ -1,4 +1,9 @@
-import { CallHandler, ExecutionContext, NestInterceptor, UseInterceptors } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  NestInterceptor,
+  UseInterceptors,
+} from '@nestjs/common';
 import { map, Observable } from 'rxjs';
 import { plainToInstance } from 'class-transformer';
 
@@ -12,7 +17,7 @@ export class SerializeInterceptor implements NestInterceptor {
     return handler.handle().pipe(
       map((data: any) => {
         return plainToInstance(this.obj, data);
-      })
+      }),
     );
   }
 }

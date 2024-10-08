@@ -34,4 +34,8 @@ export class RouteService {
       new PageMeta({ pageOptions: dto, total: count }),
     );
   }
+
+  async findOne(id: number) {
+    return this.repository.findOne(id);
+  }
 }

@@ -10,7 +10,9 @@ import {
 } from 'class-validator';
 
 @ValidatorConstraint({ name: 'validateCustomIdForActionStatus', async: false })
-export class ValidateCustomIdForActionStatus implements ValidatorConstraintInterface {
+export class ValidateCustomIdForActionStatus
+  implements ValidatorConstraintInterface
+{
   validate(value: any, args: ValidationArguments) {
     const { object } = args;
     const { action_status } = object as ActionStatusDto;
@@ -47,7 +49,9 @@ export class ValidateCustomIdForActionStatus implements ValidatorConstraintInter
   }
 }
 
-export function IdValidationForActionStatus(validationOptions?: ValidationOptions) {
+export function IdValidationForActionStatus(
+  validationOptions?: ValidationOptions,
+) {
   return function (object: Record<string, any>, propertyName: string) {
     registerDecorator({
       name: 'idValidationForActionStatus',

@@ -15,7 +15,7 @@ import { Response } from 'express';
 export class AppExceptionFilter implements ExceptionFilter {
   async catch(
     exception: unknown & { stack: string; message: string; error: string },
-    host: ArgumentsHost
+    host: ArgumentsHost,
   ) {
     // eslint-disable-next-line
     console.log(exception);
@@ -36,7 +36,8 @@ export class AppExceptionFilter implements ExceptionFilter {
     }
 
     if (exception instanceof LogicException) {
-      const { httpStatusCode, message } = Exceptions[(exception as LogicException).error];
+      const { httpStatusCode, message } =
+        Exceptions[(exception as LogicException).error];
       responseBody.meta = message;
       response.status(httpStatusCode).json(responseBody);
       return;

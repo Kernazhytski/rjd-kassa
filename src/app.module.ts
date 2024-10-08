@@ -12,6 +12,7 @@ import { UserToRoleModule } from './core/user_to_role/user_to_role.module';
 import { TrainModule } from './core/train/train.module';
 import { TrainTypeModule } from './core/nsi/train-type/train-type.module';
 import { RouteModule } from './core/route/route.module';
+import { VoyageModule } from './core/voyage/voyage.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { RouteModule } from './core/route/route.module';
     TrainModule,
     TrainTypeModule,
     RouteModule,
+    VoyageModule,
   ],
   controllers: [],
   providers: [],

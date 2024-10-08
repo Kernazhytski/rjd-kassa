@@ -20,7 +20,10 @@ export class IsLessOrEqualsDecorator implements ValidatorConstraintInterface {
   }
 }
 
-export function IsLessOrEqualsThanOther(property: string, validationOptions?: ValidationOptions) {
+export function IsLessOrEqualsThanOther(
+  property: string,
+  validationOptions?: ValidationOptions,
+) {
   return function (object: NonNullable<unknown>, propertyName: string) {
     registerDecorator({
       target: object.constructor,

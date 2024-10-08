@@ -1,4 +1,8 @@
-import { ValidationOptions, buildMessage, registerDecorator } from 'class-validator';
+import {
+  ValidationOptions,
+  buildMessage,
+  registerDecorator,
+} from 'class-validator';
 
 export function IsBigIntString(validationOptions?: ValidationOptions) {
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -15,8 +19,9 @@ export function IsBigIntString(validationOptions?: ValidationOptions) {
           return !!typedValue.match(/^\d*$/);
         },
         defaultMessage: buildMessage(
-          (eachPrefix) => `${eachPrefix}$property must be a valid bigint string`,
-          validationOptions
+          (eachPrefix) =>
+            `${eachPrefix}$property must be a valid bigint string`,
+          validationOptions,
         ),
       },
     });

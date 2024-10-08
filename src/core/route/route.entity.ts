@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { numericTransformer } from '../../transformers/numeric.transformer';
+import { Voyage } from '../voyage/voyage.entity';
 
 @Entity('routes')
 export class Route {
@@ -20,4 +21,7 @@ export class Route {
     transformer: numericTransformer,
   })
   travel_time: number;
+
+  @OneToMany(() => Voyage, (voyage) => voyage.route)
+  voyages: Voyage[];
 }

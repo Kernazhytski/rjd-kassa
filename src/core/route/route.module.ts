@@ -10,5 +10,6 @@ import { AuthModule } from '../auth/auth.module';
   providers: [RouteService, RouteRepository],
   controllers: [RouteController],
   imports: [TypeOrmModule.forFeature([Route]), AuthModule],
+  exports: [RouteService],
 })
 export class RouteModule {}

@@ -1,6 +1,13 @@
-import { ValidationOptions, ValidateIf, IsOptional as IsOptionalValidator } from 'class-validator';
+import {
+  ValidationOptions,
+  ValidateIf,
+  IsOptional as IsOptionalValidator,
+} from 'class-validator';
 
-export function IsOptional(nullable = true, validationOptions?: ValidationOptions) {
+export function IsOptional(
+  nullable = true,
+  validationOptions?: ValidationOptions,
+) {
   if (nullable) {
     return IsOptionalValidator(validationOptions);
   }

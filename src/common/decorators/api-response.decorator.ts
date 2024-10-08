@@ -5,7 +5,11 @@ type ApiResponseOptionsType = {
   withContent?: boolean;
   description?: string;
 };
-export const ApiResponseCustom = (status: number, type?: any, option?: ApiResponseOptionsType) => {
+export const ApiResponseCustom = (
+  status: number,
+  type?: any,
+  option?: ApiResponseOptionsType,
+) => {
   const data = type
     ? option?.withContent
       ? {
@@ -41,6 +45,6 @@ export const ApiResponseCustom = (status: number, type?: any, option?: ApiRespon
           },
         ],
       },
-    })
+    }),
   );
 };

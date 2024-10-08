@@ -3,9 +3,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { TrainType } from '../nsi/train-type/train-type.entity';
+import { Voyage } from '../voyage/voyage.entity';
 
 @Entity('trains')
 export class Train {
@@ -27,4 +29,7 @@ export class Train {
 
   @Column({ type: 'integer' })
   train_type_id: number;
+
+  @OneToMany(() => Voyage, (voyage) => voyage.train)
+  voyages: Voyage[];
 }

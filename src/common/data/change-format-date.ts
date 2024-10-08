@@ -2,7 +2,7 @@ import * as dayjs from 'dayjs';
 
 export const formatDateFromYYYYMMDDtoDDMMYYYY = (
   date?: string | null,
-  options?: { includeTime: boolean }
+  options?: { includeTime: boolean },
 ) => {
   let dateCellFormat: string = 'DD-MM-YYYY';
 
@@ -13,7 +13,10 @@ export const formatDateFromYYYYMMDDtoDDMMYYYY = (
   return date ? dayjs(date).format(dateCellFormat) : '';
 };
 
-export const formatDateToYYYYMMDD = (date?: string | null, options?: { includeTime: boolean }) => {
+export const formatDateToYYYYMMDD = (
+  date?: string | null,
+  options?: { includeTime: boolean },
+) => {
   let dateCellFormat: string = 'YYYY-MM-DD';
 
   if (options?.includeTime) {

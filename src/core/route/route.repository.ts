@@ -81,4 +81,8 @@ export class RouteRepository {
 
     return query.getCount();
   }
+
+  async findOne(id: number) {
+    return this.repository.findOne({ where: { id } });
+  }
 }

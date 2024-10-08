@@ -1,4 +1,9 @@
-import { PipeTransform, Injectable, ArgumentMetadata, BadRequestException } from '@nestjs/common';
+import {
+  PipeTransform,
+  Injectable,
+  ArgumentMetadata,
+  BadRequestException,
+} from '@nestjs/common';
 
 @Injectable()
 export class BigIntValidationPipe implements PipeTransform {
@@ -7,7 +12,9 @@ export class BigIntValidationPipe implements PipeTransform {
       (metadata.type === 'param' || metadata.type === 'query') &&
       !(value as string).match(/^\d+$/)
     ) {
-      throw new BadRequestException(`Неверный формат параметра ${metadata.data}`);
+      throw new BadRequestException(
+        `Неверный формат параметра ${metadata.data}`,
+      );
     }
     return value;
   }
