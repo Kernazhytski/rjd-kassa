@@ -62,7 +62,7 @@ export class RouteController {
   })
   @ApiPaginatedResponse(GetRoutesResponseDto)
   @UseGuards(AdminGuard)
-  @Get('table')
+  @Get('all')
   async getRoutes(@Query() dto: GetRoutesRequestDto) {
     return this.service.getRoutes(dto);
   }

@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import { User_to_role } from '../user_to_role/user_to_role.entity';
+import { Ticket } from '../ticket/ticket.entity';
 
 @Entity('users')
 export class User {
@@ -40,4 +41,7 @@ export class User {
 
   @OneToMany(() => User_to_role, (user_to_role) => user_to_role.user)
   user_to_roles: User_to_role[];
+
+  @OneToMany(() => Ticket, (ticket) => ticket.user)
+  tickets: Ticket[];
 }

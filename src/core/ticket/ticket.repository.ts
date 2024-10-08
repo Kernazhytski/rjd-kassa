@@ -31,4 +31,26 @@ export class TicketRepository {
 
     return query.getRawOne();
   }
+
+  async getTicketInfo(id: number) {
+    const query = this.repository
+      .createQueryBuilder('ticket')
+      .select([
+        "CONCAT(user.name, ' ', user.surname,' ', user.patronymic) as fio",
+        'voyage.ticket_cost as price',
+        "to_char(voyage.start_date, 'DD.MM.YYYY') as depart",
+        "to_char(voyage.start_date + interval '1m' * route.travel_time, 'DD.MM.YYYY') as arrive",
+        'train.number as train_num',
+        'CASE WHEN voyage.is_start THEN route.start ELSE route.finish END as from',
+        'CASE WHEN voyage.is_start THEN route.finish ELSE route.start END as to',
+        "to_char(NOW(), 'DD-MM-YYYY') as date",
+      ])
+      .leftJoin('ticket.user', 'user')
+      .leftJoin('ticket.voyage', 'voyage')
+      .leftJoin('voyage.train', 'train')
+      .leftJoin('voyage.route', 'route')
+      .where('ticket.id = :id', { id });
+
+    return query.getRawOne();
+  }
 }
