@@ -91,7 +91,9 @@ export class AuthService {
 
   async generateToken(userId: string, roles: number[]) {
     const payload = { userId, roles };
-    return this.jwtService.signAsync(payload);
+    return this.jwtService.signAsync(payload, {
+      expiresIn: '2 days',
+    });
   }
 
   // Метод для шифрования
