@@ -15,5 +15,13 @@ services:
     volumes:
       - postgres_data_rjd:/var/lib/postgresql/data
 
+  server:
+    build: .
+    container_name: server
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+
 volumes:
   postgres_data_rjd:
