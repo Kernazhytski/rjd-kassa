@@ -7,10 +7,16 @@ import { AuthModule } from '../auth/auth.module';
 import { TicketRepository } from './ticket.repository';
 import { DocsModule } from '../docs/docs.module';
 import { PdfService } from '../pdf/pdf.service';
+import { UserModule } from '../user/user.module';
 
 @Module({
   providers: [TicketService, TicketRepository, PdfService],
   controllers: [TicketController],
-  imports: [TypeOrmModule.forFeature([Ticket]), AuthModule, DocsModule],
+  imports: [
+    TypeOrmModule.forFeature([Ticket]),
+    AuthModule,
+    DocsModule,
+    UserModule,
+  ],
 })
 export class TicketModule {}

@@ -8,6 +8,8 @@ import { ClsService } from 'nestjs-cls';
 import { DocsService } from '../docs/docs.service';
 import * as fs from 'node:fs';
 import { PdfService } from '../pdf/pdf.service';
+import { UserService } from 'core/user/user.service';
+import { IsNull, Not } from 'typeorm';
 
 @Injectable()
 export class TicketService {
@@ -17,6 +19,7 @@ export class TicketService {
     private readonly cls: ClsService,
     private readonly docsService: DocsService,
     private readonly pdfService: PdfService,
+    private readonly userService: UserService,
   ) {
     this.file = fs.readFileSync(
       './src/core/ticket/file/Train Ticket Template.docx',
@@ -32,6 +35,17 @@ export class TicketService {
     }
 
     const user_id = this.cls.get('userId');
+
+    const user = await this.userService.checkUserExistByOption({
+      id: user_id,
+      name: Not(IsNull()),
+      surname: Not(IsNull()),
+      patronymic: Not(IsNull()),
+      passport_num: Not(IsNull()),
+    });
+    if (!user) {
+      throw new LogicException(LogicExceptionList.UserIsNotRegistred);
+    }
 
     const ticket_number = uuidv4();
 

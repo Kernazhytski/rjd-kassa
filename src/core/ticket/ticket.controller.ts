@@ -17,6 +17,8 @@ import {
 } from '@nestjs/swagger';
 import { AuthGuard } from '../../common/guards/auth.guard';
 import { Response } from 'express';
+import { ApiException } from '../../common/decorators/api-exception.decorator';
+import { LogicExceptionList } from '../../exceptions/types/logic-exceptions.enum';
 
 @ApiTags('Ticket')
 @ApiSecurity('bearer')
@@ -29,6 +31,10 @@ export class TicketController {
   })
   @UseGuards(AuthGuard)
   @Post('buy')
+  @ApiException([
+    LogicExceptionList.NoPlaces,
+    LogicExceptionList.UserIsNotRegistred,
+  ])
   async buyTicket(@Body() dto: CreateTicketRequestDto) {
     return this.service.create(dto);
   }

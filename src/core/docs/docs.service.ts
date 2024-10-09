@@ -1,6 +1,8 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import Docxtemplater from 'docxtemplater';
 import PizZip from 'pizzip';
+import { LogicException } from '../../exceptions/logic-exception';
+import { LogicExceptionList } from '../../exceptions/types/logic-exceptions.enum';
 
 @Injectable()
 export class DocsService {
@@ -26,7 +28,7 @@ export class DocsService {
 
       return buf;
     } catch (e) {
-      throw new HttpException('Шаблон некорректен', 409);
+      throw new LogicException(LogicExceptionList.SheduleIsWrong);
     }
   }
 

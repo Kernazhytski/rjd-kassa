@@ -22,6 +22,7 @@ import { GetTrainsRequestDto } from './dto/request/get-trains-request.dto';
 import { EditTrainRequestDto } from './dto/request/edit-train-request.dto';
 import { GetTrainsResponseDto } from './dto/response/get-trains-response.dto';
 import { ApiPaginatedResponse } from '../../common/pagination/page-swagger.decorator';
+import { AuthGuard } from '../../common/guards/auth.guard';
 
 @ApiTags('Train')
 @ApiSecurity('bearer')
@@ -44,7 +45,7 @@ export class TrainController {
   })
   @Get('all')
   @ApiPaginatedResponse(GetTrainsResponseDto)
-  @UseGuards(AdminGuard)
+  @UseGuards(AuthGuard)
   async getTrains(@Query() dto: GetTrainsRequestDto) {
     return this.service.getTrains(dto);
   }

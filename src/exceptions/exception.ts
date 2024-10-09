@@ -19,7 +19,7 @@ export const Exceptions: LogicExceptionType = {
     message: 'Данный логин уже существует',
   },
   [LogicExceptionList.UserNotExist]: {
-    httpStatusCode: 404,
+    httpStatusCode: 400,
     message: 'Пользователь не существует',
   },
   [LogicExceptionList.PasswordDontMatch]: {
@@ -29,5 +29,13 @@ export const Exceptions: LogicExceptionType = {
   [LogicExceptionList.NoPlaces]: {
     httpStatusCode: 403,
     message: 'Недостаточно мест',
+  },
+  [LogicExceptionList.UserIsNotRegistred]: {
+    httpStatusCode: 403,
+    message: 'Пользователь не заполнен',
+  },
+  [LogicExceptionList.SheduleIsWrong]: {
+    httpStatusCode: 409,
+    message: 'Шаблон некорректен',
   },
 };

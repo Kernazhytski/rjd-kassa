@@ -22,6 +22,7 @@ import { EditRouteRequestDto } from './dto/request/edit-route-request.dto';
 import { GetRoutesRequestDto } from './dto/request/get-routes-request.dto';
 import { GetRoutesResponseDto } from './dto/response/get-routes-response.dto';
 import { ApiPaginatedResponse } from '../../common/pagination/page-swagger.decorator';
+import { AuthGuard } from '../../common/guards/auth.guard';
 
 @ApiTags('Route')
 @ApiSecurity('bearer')
@@ -61,7 +62,7 @@ export class RouteController {
     summary: 'Получение списка маршрутов',
   })
   @ApiPaginatedResponse(GetRoutesResponseDto)
-  @UseGuards(AdminGuard)
+  @UseGuards(AuthGuard)
   @Get('all')
   async getRoutes(@Query() dto: GetRoutesRequestDto) {
     return this.service.getRoutes(dto);
