@@ -1,5 +1,8 @@
 version: '3.8'
 
+networks:
+  kek:
+
 services:
   rjd_database:
     image: postgres:15-alpine
@@ -11,16 +14,22 @@ services:
     ports:
       - "5432:5432"
     expose:
-      - 5432
+      - "5432"
     volumes:
       - postgres_data_rjd:/var/lib/postgresql/data
+    networks:
+      - kek
 
-  server:
+  rjd-server:
     build: .
     container_name: server
     ports:
       - "3000:3000"
+    depends_on:
+      - rjd_database
     restart: unless-stopped
+    networks:
+      - kek
 
 
 volumes:

@@ -31,21 +31,21 @@ import { VoyageTableResponseDto } from './dto/response/voyage-table-response.dto
 export class VoyageController {
   constructor(private readonly service: VoyageService) {}
 
-  @ApiOperation({ summary: 'Create voyage' })
+  @ApiOperation({ summary: 'Create voyage (admin)' })
   @UseGuards(AdminGuard)
   @Post()
   async create(@Body() dto: CreateVoyageRequestDto) {
     return this.service.create(dto);
   }
 
-  @ApiOperation({ summary: 'Edit voyage' })
+  @ApiOperation({ summary: 'Edit voyage (admin)' })
   @UseGuards(AdminGuard)
   @Put()
   async edit(@Body() dto: EditVoyageRequestDto) {
     return this.service.edit(dto);
   }
 
-  @ApiOperation({ summary: 'Delete voyage' })
+  @ApiOperation({ summary: 'Delete voyage (admin)' })
   @UseGuards(AdminGuard)
   @Delete(':id')
   async delete(@Param('id') id: number) {

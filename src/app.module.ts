@@ -20,8 +20,7 @@ import { TicketModule } from './core/ticket/ticket.module';
     ConfigModule.forRoot({
       load: [databaseConfig, appConfig],
       isGlobal: true,
-      ignoreEnvFile: process.env.NODE_ENV !== 'local',
-      envFilePath: `.${process.env.NODE_ENV}.env`,
+      envFilePath: `.env`,
     }),
     ClsModule.forRoot({
       global: true,

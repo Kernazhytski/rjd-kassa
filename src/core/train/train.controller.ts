@@ -32,7 +32,7 @@ export class TrainController {
   constructor(private readonly service: TrainService) {}
 
   @ApiOperation({
-    summary: 'Create train',
+    summary: 'Create train (admin)',
   })
   @Post('')
   @UseGuards(AdminGuard)
@@ -41,7 +41,7 @@ export class TrainController {
   }
 
   @ApiOperation({
-    summary: 'Get all trains',
+    summary: 'Get all trains ',
   })
   @Get('all')
   @ApiPaginatedResponse(GetTrainsResponseDto)
@@ -51,7 +51,7 @@ export class TrainController {
   }
 
   @ApiOperation({
-    summary: 'Edit train',
+    summary: 'Edit train (admin)',
   })
   @UseGuards(AdminGuard)
   @Put('')
@@ -60,7 +60,7 @@ export class TrainController {
   }
 
   @ApiOperation({
-    summary: 'Delete train',
+    summary: 'Delete train (admin)',
   })
   @UseGuards(AdminGuard)
   @Delete('/:id')

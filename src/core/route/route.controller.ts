@@ -32,7 +32,7 @@ export class RouteController {
   constructor(private readonly service: RouteService) {}
 
   @ApiOperation({
-    summary: 'Создание маршрута',
+    summary: 'Создание маршрута (admin)',
   })
   @UseGuards(AdminGuard)
   @Post()
@@ -41,7 +41,7 @@ export class RouteController {
   }
 
   @ApiOperation({
-    summary: 'Редактирование маршрута',
+    summary: 'Редактирование маршрута (admin)',
   })
   @UseGuards(AdminGuard)
   @Put()
@@ -50,7 +50,7 @@ export class RouteController {
   }
 
   @ApiOperation({
-    summary: 'Удаление маршрута',
+    summary: 'Удаление маршрута (admin)',
   })
   @UseGuards(AdminGuard)
   @Delete(':id')
