@@ -72,10 +72,13 @@ export class VoyageService {
             model: vouyage?.train?.model,
             train_type: vouyage?.train?.train_type?.name,
           },
-          from: vouyage?.route?.start,
-          to: vouyage?.route?.finish,
+          from: vouyage.is_start
+            ? vouyage?.route?.start
+            : vouyage?.route?.finish,
+          to: vouyage.is_start ? vouyage?.route?.finish : vouyage?.route?.start,
           ticket_cost: vouyage?.ticket_cost,
           tickets_left: vouyage?.train?.passengers - vouyage?.tickets?.length,
+          route_id: vouyage?.route?.id,
         };
       }),
       new PageMeta({

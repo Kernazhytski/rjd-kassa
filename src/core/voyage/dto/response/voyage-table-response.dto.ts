@@ -35,4 +35,7 @@ export class VoyageTableResponseDto {
 
   @ApiProperty()
   tickets_left: number;
+
+  @ApiProperty()
+  route_id: number;
 }
