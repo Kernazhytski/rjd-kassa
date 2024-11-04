@@ -15,7 +15,7 @@ export class UserRepository {
     return this.repository.exists({ where: option });
   }
 
-  async create(data: Partial<User>, manager?: EntityManager) {
+  async save(data: Partial<User>, manager?: EntityManager) {
     const user = Object.assign(new User(), data);
 
     return manager ? manager.save(User, user) : this.repository.save(user);

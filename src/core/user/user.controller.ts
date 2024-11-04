@@ -1,4 +1,4 @@
-import { Controller, Get, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Put, Query, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthGuard } from '../../common/guards/auth.guard';
 import { ApiResponseCustom } from '../../common/decorators/api-response.decorator';
@@ -12,6 +12,7 @@ import {
 import { MyTicketsRequestDto } from './dto/request/my-tickets-request.dto';
 import { ApiPaginatedResponse } from '../../common/pagination/page-swagger.decorator';
 import { MyTicketsResponseDto } from './dto/response/my-tickets-response.dto';
+import { EditUserRequestDto } from './dto/request/edit-user-request.dto';
 
 @ApiTags('User')
 @ApiExtraModels(MeResponseDto)
@@ -27,6 +28,13 @@ export class UserController {
   @ApiResponseCustom(200, MeResponseDto)
   async me() {
     return this.service.me();
+  }
+
+  @ApiOperation({ summary: 'Edit current user' })
+  @UseGuards(AuthGuard)
+  @Put('edit')
+  async editMe(@Body() dto: EditUserRequestDto) {
+    return this.service.edit(dto);
   }
 
   @Get('my-tickets')

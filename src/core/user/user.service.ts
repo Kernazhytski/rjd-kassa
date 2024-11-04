@@ -6,6 +6,7 @@ import { ClsService } from 'nestjs-cls';
 import { MyTicketsRequestDto } from './dto/request/my-tickets-request.dto';
 import { PageData } from '../../common/pagination/page.class';
 import { PageMeta } from '../../common/pagination/page-meta.class';
+import { EditUserRequestDto } from './dto/request/edit-user-request.dto';
 
 @Injectable()
 export class UserService {
@@ -20,7 +21,7 @@ export class UserService {
   }
 
   create(data: Partial<User>, manager?: EntityManager) {
-    return this.repository.create(data, manager);
+    return this.repository.save(data, manager);
   }
 
   async findUserByLogin(option: FindOptionsWhere<User>) {
@@ -32,6 +33,12 @@ export class UserService {
 
     const user = await this.repository.findById(userId);
     return user;
+  }
+
+  async edit(dto: EditUserRequestDto) {
+    const userId = this.cls.get('userId');
+
+    return this.repository.save({ ...dto, id: userId });
   }
 
   async myTickets(dto: MyTicketsRequestDto) {
