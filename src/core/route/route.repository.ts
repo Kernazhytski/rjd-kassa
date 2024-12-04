@@ -11,7 +11,10 @@ export class RouteRepository {
     private readonly repository: Repository<Route>,
   ) {}
 
-  async save(data: Partial<Route>, manager?: EntityManager) {
+  async save(
+    data: Partial<Route>,
+    manager?: EntityManager,
+  ): Promise<Partial<Route>> {
     return manager ? manager.save(Route, data) : this.repository.save(data);
   }
 
@@ -82,7 +85,7 @@ export class RouteRepository {
     return query.getCount();
   }
 
-  async findOne(id: number) {
+  async findOne(id: number): Promise<Partial<Route>> {
     return this.repository.findOne({ where: { id } });
   }
 }

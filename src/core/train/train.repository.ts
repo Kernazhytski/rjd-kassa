@@ -12,7 +12,10 @@ export class TrainRepository {
     private readonly repository: Repository<Train>,
   ) {}
 
-  async save(data: Partial<Train>, manager?: EntityManager) {
+  async save(
+    data: Partial<Train>,
+    manager?: EntityManager,
+  ): Promise<Partial<Train>> {
     return manager ? manager.save(Train, data) : this.repository.save(data);
   }
 
